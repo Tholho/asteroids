@@ -27,13 +27,15 @@ def main():
         screen.fill("#000000")
         for entity in updatable:
             entity.update(dt)
-        for entity in asteroids:
+        for entity in asteroids.sprites():
             if entity.collision_check(player):
+                print(f"Asteroid position: {entity.position}")
+                print(f"Player position: {player.position}")
                 print("Game over!")
                 return
-            for bullet in shots:
+            for bullet in shots.sprites():
                 if entity.collision_check(bullet):
-                    entity.kill()
+                    entity.split()
                     bullet.kill()
         for entity in drawable:
             entity.draw(screen)
