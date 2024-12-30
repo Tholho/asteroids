@@ -25,6 +25,10 @@ def main():
         screen.fill("#000000")
         for entity in drawable:
             entity.draw(screen)
+        for entity in asteroids:
+            if entity.collision_check(player):
+                print("Game over!")
+                return
         pygame.display.flip()
         dt = clock.tick(60) / 1000
     print("Starting asteroids!")
