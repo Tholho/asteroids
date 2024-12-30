@@ -4,6 +4,7 @@ from player import Player
 
 def main():
     pygame.init()
+    font = pygame.font.SysFont(None, 36)
     clock = pygame.time.Clock()
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -15,6 +16,9 @@ def main():
         player.update(dt)
         screen.fill("#000000")
         player.draw(screen)
+        rotation_value = str(player.rotation)
+        text = font.render(f'Rotation: {rotation_value}', True, "#FFFFFF")
+        screen.blit(text, (10,10))
         pygame.display.flip()
         dt = clock.tick(60) / 1000
     print("Starting asteroids!")
